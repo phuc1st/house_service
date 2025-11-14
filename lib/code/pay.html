@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Payment Method</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .brand-orange { color: rgb(203, 91, 23); }
+        .bg-brand-orange { background-color: rgb(203, 91, 23); }
+        .border-brand-orange { border-color: rgb(203, 91, 23); }
+        .hover\:bg-brand-orange-dark:hover { background-color: rgb(180, 80, 20); }
+        .bg-brand-cream { background-color: #FFFBF7; }
+        .custom-radio:checked {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+            background-color: rgb(203, 91, 23);
+            border-color: rgb(203, 91, 23);
+        }
+    </style>
+</head>
+<body class="bg-gray-200">
+
+    <div class="max-w-[390px] mx-auto bg-white h-screen flex flex-col shadow-2xl overflow-hidden">
+
+        <!-- 1. Header -->
+        <header class="flex justify-between items-center p-4 bg-white border-b border-gray-100">
+            <!-- Nút quay lại -->
+            <button class="p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-gray-800">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+            <!-- Tiêu đề -->
+            <h1 class="text-lg font-semibold text-gray-900">Chọn thanh toán</h1>
+            <!-- Placeholder -->
+            <div class="w-8"></div>
+        </header>
+
+        <!-- 2. Nội dung chính (có thể cuộn) -->
+        <main class="flex-1 overflow-y-auto bg-brand-cream p-5 space-y-5">
+            
+            <!-- Thẻ Phương thức thanh toán -->
+            <div class="bg-transparent p-0 space-y-4">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Thanh toán bằng</h3>
+                
+                <!-- Lựa chọn 1: Thẻ tín dụng đã lưu -->
+                <label for="card" class="flex items-center p-4 border rounded-xl bg-white has-[:checked]:border-brand-orange has-[:checked]:bg-orange-50">
+                    <input type="radio" id="card" name="payment_method" class="custom-radio w-5 h-5 mr-4" checked>
+                    <!-- Icon thẻ -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-600 mr-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h6m3-3.75l-3 3m0 0l-3-3m3 3V15m6 2.25h3m-3.75 3.75h3m-3.75-3.75L18 15m0 0v3.75m0 0l-3.75-3.75M3 12h18M3 15h18" />
+                    </svg>
+                    <span class="font-medium text-gray-800">Visa</span>
+                    <span class="ml-auto text-sm font-medium">**** 4921</span>
+                </label>
+
+                <!-- Lựa chọn 2: Ví điện tử (Ví dụ MoMo) -->
+                <label for="ewallet" class="flex items-center p-4 border rounded-xl bg-white has-[:checked]:border-brand-orange has-[:checked]:bg-orange-50">
+                    <input type="radio" id="ewallet" name="payment_method" class="custom-radio w-5 h-5 mr-4">
+                    <!-- Icon ví (ví dụ) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-600 mr-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6.75A2.25 2.25 0 0118.75 21H5.25A2.25 2.25 0 013 18.75V12m18 0v-6A2.25 2.25 0 0018.75 3.75H5.25A2.25 2.25 0 003 6v6m18 0c0 1.104-.896 2-2 2h-2c-1.104 0-2-.896-2-2m-8 0c0 1.104-.896 2-2 2H9c-1.104 0-2-.896-2-2" />
+                    </svg>
+                    <span class="font-medium text-gray-800">Ví điện tử (MoMo)</span>
+                </label>
+
+                <!-- Lựa chọn 3: COD -->
+                <label for="cod" class="flex items-center p-4 border rounded-xl bg-white has-[:checked]:border-brand-orange has-[:checked]:bg-orange-50">
+                    <input type="radio" id="cod" name="payment_method" class="custom-radio w-5 h-5 mr-4">
+                    <!-- Icon COD -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-600 mr-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c.959.713 2.278.713 3.238 0l.878-.659M18 12H6" />
+                    </svg>
+                    <span class="font-medium text-gray-800">Thanh toán khi hoàn thành (COD)</span>
+                </label>
+
+                <!-- Nút Thêm phương thức mới -->
+                <button class="flex items-center justify-center w-full p-4 border-2 border-dashed border-gray-300 rounded-xl text-gray-600 hover:border-brand-orange hover:text-brand-orange transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mr-2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    <span class="font-semibold">Thêm phương thức mới</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- 3. Thanh Nút bấm (Sticky Footer) -->
+        <footer class="bg-white border-t border-gray-200 p-5 shadow-inner">
+            <!-- Thông tin tổng tiền ở đây -->
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-gray-600 text-lg">Tổng cộng</span>
+                <span class="text-xl font-bold text-gray-900">$27.50</span>
+            </div>
+            <!-- Nút này sẽ xử lý thanh toán -->
+            <button class="w-full text-center py-4 rounded-xl bg-brand-orange text-white font-semibold text-lg hover:bg-brand-orange-dark transition-colors">
+                Xác nhận & Thanh toán
+            </button>
+        </footer>
+    </div>
+</body>
+</html>
