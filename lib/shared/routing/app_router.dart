@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:project/features/auth/login_screen.dart';
+import 'package:project/features/auth/register_step1_screen.dart';
+import 'package:project/features/auth/register_step2_screen.dart';
+import 'package:project/features/auth/verify_otp_screen.dart';
+import 'package:project/features/auth/welcome_screen.dart';
 import 'package:project/features/family_tips/family_tips_screen.dart';
+import 'package:project/features/home/home_screen.dart';
 import 'package:project/features/house_profile/house_profile_screen.dart';
+import 'package:project/features/services/cleaning_service_screen.dart';
 import 'package:project/features/loyalty/loyalty_screen.dart';
 import 'package:project/features/orders/order_confirmation_screen.dart';
 import 'package:project/features/orders/order_details_screen.dart';
@@ -12,6 +19,13 @@ import 'package:project/features/report_incident/report_incident_screen.dart';
 import 'package:project/features/service_packages/service_packages_screen.dart';
 
 class AppRouter {
+  static const String welcome = '/welcome';
+  static const String login = '/login';
+  static const String registerStep1 = '/register-step1';
+  static const String registerStep2 = '/register-step2';
+  static const String verifyOtp = '/verify-otp';
+  static const String home = '/home';
+  static const String cleaningService = '/cleaning-service';
   static const String orderConfirmation = '/order-confirmation';
   static const String paymentMethod = '/payment-method';
   static const String paymentSuccess = '/payment-success';
@@ -25,8 +39,43 @@ class AppRouter {
   static GoRouter get router => _router;
 
   static final GoRouter _router = GoRouter(
-    initialLocation: servicePackages    ,
+    initialLocation: welcome,
     routes: [
+      GoRoute(
+        path: welcome,
+        name: 'welcome',
+        builder: (context, state) => const WelcomeScreen(),
+      ),
+      GoRoute(
+        path: login,
+        name: 'login',
+        builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: registerStep1,
+        name: 'register-step1',
+        builder: (context, state) => const RegisterStep1Screen(),
+      ),
+      GoRoute(
+        path: registerStep2,
+        name: 'register-step2',
+        builder: (context, state) => const RegisterStep2Screen(),
+      ),
+      GoRoute(
+        path: verifyOtp,
+        name: 'verify-otp',
+        builder: (context, state) => const VerifyOtpScreen(),
+      ),
+      GoRoute(
+        path: home,
+        name: 'home',
+        builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: cleaningService,
+        name: 'cleaning-service',
+        builder: (context, state) => const CleaningServiceScreen(),
+      ),
       GoRoute(
         path: orderConfirmation,
         name: 'order-confirmation',

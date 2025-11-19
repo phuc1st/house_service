@@ -10,6 +10,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
     this.elevation = 0,
     this.iconColor,
     this.titleStyle,
+    this.centerTitle = true,
   });
 
   final String title;
@@ -19,6 +20,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   final double elevation;
   final Color? iconColor;
   final TextStyle? titleStyle;
+  final bool centerTitle;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -52,19 +54,37 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
                           : null),
                 ),
               ),
-              Center(
-                child: Text(
-                  title,
-                  style: titleStyle ??
-                      const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
+              centerTitle
+                  ? Center(
+                      child: Text(
+                        title,
+                        style: titleStyle ??
+                            const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black87,
+                            ),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
+                    )
+                  : Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: kMinInteractiveDimension),
+                        child: Text(
+                          title,
+                          style: titleStyle ??
+                              const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black87,
+                              ),
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
               Align(
                 alignment: Alignment.centerRight,
                 child: trailing ??
