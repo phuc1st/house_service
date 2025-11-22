@@ -11,8 +11,10 @@ import 'package:project/features/home/home_screen.dart';
 import 'package:project/features/house_profile/house_profile_screen.dart';
 import 'package:project/features/services/cleaning_service_screen.dart';
 import 'package:project/features/loyalty/loyalty_screen.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/features/orders/order_confirmation_screen.dart';
 import 'package:project/features/orders/order_details_screen.dart';
+import 'package:project/features/orders/order_screen.dart';
 import 'package:project/features/payments/payment_method_screen.dart';
 import 'package:project/features/payments/payment_success_screen.dart';
 import 'package:project/features/report_incident/report_incident_screen.dart';
@@ -26,6 +28,7 @@ class AppRouter {
   static const String verifyOtp = '/verify-otp';
   static const String home = '/home';
   static const String cleaningService = '/cleaning-service';
+  static const String order = '/order';
   static const String orderConfirmation = '/order-confirmation';
   static const String paymentMethod = '/payment-method';
   static const String paymentSuccess = '/payment-success';
@@ -39,7 +42,7 @@ class AppRouter {
   static GoRouter get router => _router;
 
   static final GoRouter _router = GoRouter(
-    initialLocation: welcome,
+    initialLocation: orderDetails,
     routes: [
       GoRoute(
         path: welcome,
@@ -75,6 +78,11 @@ class AppRouter {
         path: cleaningService,
         name: 'cleaning-service',
         builder: (context, state) => const CleaningServiceScreen(),
+      ),
+      GoRoute(
+        path: order,
+        name: 'order',
+        builder: (context, state) => const OrderScreen(),
       ),
       GoRoute(
         path: orderConfirmation,
@@ -121,6 +129,8 @@ class AppRouter {
         name: 'service-packages',
         builder: (context, state) => const ServicePackagesScreen(),
       ),
+      // Order Payment routes
+      ...OrderPaymentRouter.routes,
     ],
     errorBuilder: (context, state) => Scaffold(
       body: Center(

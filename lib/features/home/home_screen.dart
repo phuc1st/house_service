@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:project/shared/routing/app_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
 import 'package:project/shared/widgets/app_primary_button.dart';
 
@@ -106,24 +109,34 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           // Search Bar
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Tìm kiếm',
-                hintStyle: TextStyle(color: Colors.grey.shade400),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: Colors.grey,
-                ),
-                border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
+          InkWell(
+            onTap: () {
+              context.go(OrderPaymentRouter.search);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 12,
+              ),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.search,
+                    color: Colors.grey,
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    'Tìm kiếm',
+                    style: TextStyle(
+                      color: Colors.grey.shade400,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
