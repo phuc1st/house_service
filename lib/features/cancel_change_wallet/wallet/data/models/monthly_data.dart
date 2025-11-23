@@ -8,3 +8,4 @@ class MonthlyData {
   final double value;
 }
 
+

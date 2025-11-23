@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:project/features/cancel_change_wallet/wallet/wallet_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/shared/routing/app_router.dart';
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
 import 'package:project/shared/widgets/app_gradient_background.dart';
@@ -38,7 +39,7 @@ class WalletScreen extends StatelessWidget {
               Navigator.of(context).pop();
             } else {
               // If no route to pop, navigate to order details
-              context.go(AppRouter.orderDetails);
+              context.go(OrderPaymentRouter.orderDetails);
             }
           },
         ),

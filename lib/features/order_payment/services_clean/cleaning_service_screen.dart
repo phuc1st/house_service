@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/shared/routing/app_router.dart';
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
 import 'package:project/shared/widgets/app_primary_button.dart';
@@ -358,7 +359,7 @@ class _CleaningServiceScreenState extends State<CleaningServiceScreen> {
                   child: AppPrimaryButton(
                     label: 'Đặt ngay',
                     onPressed: () {
-                      context.go(AppRouter.order);
+                      context.push(OrderPaymentRouter.serviceWaiting);
                     },
                     padding: const EdgeInsets.symmetric(vertical: 12),
                   ),

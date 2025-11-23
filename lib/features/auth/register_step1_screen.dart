@@ -184,7 +184,7 @@ class RegisterStep1Screen extends StatelessWidget {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                context.go(AppRouter.registerStep2);
+                                context.push(AppRouter.registerStep2);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFFFE4D1),

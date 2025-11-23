@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/shared/routing/app_router.dart';
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
 import 'package:project/shared/widgets/app_gradient_background.dart';
@@ -43,7 +44,7 @@ class ServiceDetailScreen extends StatelessWidget {
                 child: AppPrimaryButton(
                   label: 'Đặt lịch ngay',
                   onPressed: () {
-                    context.push(AppRouter.orderConfirmation);
+                    context.push(OrderPaymentRouter.booking);
                   },
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),

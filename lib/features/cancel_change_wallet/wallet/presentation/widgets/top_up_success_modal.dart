@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project/features/cancel_change_wallet/wallet/wallet_router.dart';
 import 'package:project/shared/routing/app_router.dart';
 
 class TopUpSuccessModal extends StatelessWidget {
@@ -56,7 +57,7 @@ class TopUpSuccessModal extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
-                  context.go(AppRouter.wallet);
+                  context.go(WalletRouter.wallet);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFB23D0A),
@@ -81,4 +82,5 @@ class TopUpSuccessModal extends StatelessWidget {
     );
   }
 }
+
 

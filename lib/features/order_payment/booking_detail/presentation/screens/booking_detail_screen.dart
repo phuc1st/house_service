@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/shared/routing/app_router.dart';
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
 import 'package:project/shared/widgets/app_gradient_background.dart';
@@ -138,7 +139,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
   void _onContinue() {
     // Handle continue order
     // Navigate to next screen
-    context.push(AppRouter.orderConfirmation);
+    context.push(OrderPaymentRouter.orderConfirmation);
   }
 
   @override

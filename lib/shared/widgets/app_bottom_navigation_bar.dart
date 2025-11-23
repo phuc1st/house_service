@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 
 class AppBottomNavigationBar extends StatelessWidget {
   const AppBottomNavigationBar({
@@ -21,6 +23,29 @@ class AppBottomNavigationBar extends StatelessWidget {
       ),
       label: label,
     );
+  }
+
+  void _handleTap(BuildContext context, int index) {
+    if (onTap != null) {
+      onTap!(index);
+      return;
+    }
+
+    // Default navigation behavior
+    switch (index) {
+      case 0: // Trang chủ
+        context.go(OrderPaymentRouter.home);
+        break;
+      case 1: // Hoạt động
+        // TODO: Navigate to activity page
+        break;
+      case 2: // Tin nhắn
+        // TODO: Navigate to messages page
+        break;
+      case 3: // Tài khoản
+        // TODO: Navigate to account page
+        break;
+    }
   }
 
   @override
@@ -48,7 +73,7 @@ class AppBottomNavigationBar extends StatelessWidget {
           _buildItem(Icons.chat_bubble_outline, 'Tin nhắn'),
           _buildItem(Icons.account_circle, 'Tài khoản'),
         ],
-        onTap: onTap,
+        onTap: (index) => _handleTap(context, index),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
 import 'package:project/shared/widgets/app_gradient_background.dart';
 import '../../data/booking_mock_data.dart';
@@ -44,8 +45,7 @@ class _BookingScreenState extends State<BookingScreen> {
   }
 
   void _onContinue() {
-    // Handle continue order
-    // Navigator.push(...)
+    context.push(OrderPaymentRouter.bookingDetail);
   }
 
   @override

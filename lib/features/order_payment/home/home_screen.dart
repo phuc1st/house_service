@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Service Categories Section
-                    _buildServiceCategories(),
+                    _buildServiceCategories(context),
                     const SizedBox(height: 24),
                     // Recommended Providers Section
                     _buildRecommendedProviders(),
@@ -145,7 +145,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildServiceCategories() {
+  Widget _buildServiceCategories(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -194,6 +194,7 @@ class HomeScreen extends StatelessWidget {
               _buildCategoryCard(
                 'Dọn dẹp nhà cửa',
                 'images/home/don-dep.png',
+                onTap: () => context.push(OrderPaymentRouter.cleaningService),
               ),
               _buildCategoryCard(
                 'Tạp hóa và nấu ăn',
@@ -214,51 +215,58 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryCard(String title, String imagePath) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF8DF),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Stack(
-        children: [
-          // Text ở góc trái trên
-          Positioned(
-            top: 12,
-            left: 12,
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
+  Widget _buildCategoryCard(
+    String title,
+    String imagePath, {
+    VoidCallback? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFF8DF),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Stack(
+          children: [
+            // Text ở góc trái trên
+            Positioned(
+              top: 12,
+              left: 12,
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black87,
+                ),
+                textAlign: TextAlign.left,
               ),
-              textAlign: TextAlign.left,
             ),
-          ),
-          // Image ở góc phải dưới
-          Positioned(
-            bottom: 8,
-            right: 8,
-            child: Image.asset(
-              imagePath,
-              width: 80,
-              height: 80,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                return const SizedBox(
-                  width: 80,
-                  height: 80,
-                  child: Icon(
-                    Icons.image_not_supported,
-                    size: 40,
-                    color: Colors.grey,
-                  ),
-                );
-              },
+            // Image ở góc phải dưới
+            Positioned(
+              bottom: 8,
+              right: 8,
+              child: Image.asset(
+                imagePath,
+                width: 80,
+                height: 80,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  return const SizedBox(
+                    width: 80,
+                    height: 80,
+                    child: Icon(
+                      Icons.image_not_supported,
+                      size: 40,
+                      color: Colors.grey,
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -22,3 +22,4 @@ class Reward {
   bool get hasProgress => progressMin != null && progressCurrent != null && progressMax != null;
 }
 
+

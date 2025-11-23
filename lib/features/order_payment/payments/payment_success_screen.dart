@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 
 import 'package:project/shared/routing/app_router.dart';
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
@@ -106,7 +107,7 @@ class PaymentSuccessScreen extends StatelessWidget {
               AppPrimaryButton(
                 label: 'Xem chi tiết đơn hàng',
                 onPressed: () {
-                  context.go(AppRouter.orderDetails);
+                  context.go(OrderPaymentRouter.orderDetails);
                 },
                 padding: const EdgeInsets.symmetric(vertical: 16),
               ),

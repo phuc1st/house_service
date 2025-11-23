@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/shared/routing/app_router.dart';
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
 
@@ -42,7 +43,7 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: kPrimaryTextColor),
           onPressed: () {
-            // Xử lý khi nhấn nút back
+            context.pop();
           },
         ),
         title: const Text(
@@ -371,7 +372,7 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
       child: ElevatedButton(
         onPressed: () {
           // Xử lý tiếp tục thanh toán -> Chuyển sang màn hình chọn thanh toán
-          context.go(AppRouter.paymentMethod);
+          context.push(OrderPaymentRouter.paymentMethod);
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: kButtonColor,

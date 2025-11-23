@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 
 import 'package:project/shared/routing/app_router.dart';
 import 'package:project/shared/widgets/app_gradient_background.dart';
@@ -135,7 +136,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                     AppPrimaryButton(
                       label: 'Xác nhận và thanh toán',
                       onPressed: () {
-                        context.go(AppRouter.paymentSuccess);
+                        context.go(OrderPaymentRouter.paymentSuccess);
                       },
                     ),
                   ],

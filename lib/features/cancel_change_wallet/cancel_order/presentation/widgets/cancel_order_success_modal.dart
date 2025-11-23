@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project/features/cancel_change_wallet/wallet/wallet_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/shared/routing/app_router.dart';
 
 class CancelOrderSuccessModal extends StatelessWidget {
@@ -52,7 +54,7 @@ class CancelOrderSuccessModal extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
-                  context.push(AppRouter.wallet);
+                  context.push(WalletRouter.wallet);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFB23D0A),
@@ -79,7 +81,7 @@ class CancelOrderSuccessModal extends StatelessWidget {
                   Navigator.of(context).pop();
                   // TODO: Navigate to activity page
                   // For now, navigate to home
-                  context.go(AppRouter.home);
+                  context.go(OrderPaymentRouter.home);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFB23D0A),

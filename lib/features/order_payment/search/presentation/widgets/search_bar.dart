@@ -4,62 +4,73 @@ class SearchBar extends StatelessWidget {
   const SearchBar({
     super.key,
     required this.controller,
-    required this.searchQuery,
-    required this.onChanged,
-    required this.onSubmitted,
-    required this.onClear,
+    this.onChanged,
+    this.onSearch,
   });
 
   final TextEditingController controller;
-  final String searchQuery;
-  final ValueChanged<String> onChanged;
-  final ValueChanged<String> onSubmitted;
-  final VoidCallback onClear;
+  final ValueChanged<String>? onChanged;
+  final VoidCallback? onSearch;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: TextField(
-          controller: controller,
-          autofocus: true,
-          decoration: InputDecoration(
-            hintText: 'Tìm kiếm dịch vụ, nhà cung cấp...',
-            hintStyle: TextStyle(color: Colors.grey.shade400),
-            prefixIcon: const Icon(
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF8DF), // Light orange background
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(left: 16),
+            child: Icon(
               Icons.search,
-              color: Color(0xFFB23D0A),
-            ),
-            suffixIcon: searchQuery.isNotEmpty
-                ? IconButton(
-                    icon: const Icon(Icons.clear),
-                    color: Colors.grey,
-                    onPressed: onClear,
-                  )
-                : null,
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
+              color: Color(0xFFFFAA3C),
+              size: 24,
             ),
           ),
-          onChanged: onChanged,
-          onSubmitted: onSubmitted,
-        ),
+          Expanded(
+            child: TextField(
+              controller: controller,
+              onChanged: onChanged,
+              decoration: InputDecoration(
+                hintText: 'Tìm kiếm dịch vụ (dọn dẹp, sửa chữa,...)',
+                hintStyle: TextStyle(
+                  color: Colors.grey.shade600,
+                  fontSize: 16,
+                ),
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 14,
+                ),
+              ),
+              style: const TextStyle(
+                fontSize: 16,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: onSearch,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              decoration: const BoxDecoration(
+                color: Color(0xFFFFAA3C),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(12),
+                  bottomRight: Radius.circular(12),
+                ),
+              ),
+              child: const Icon(
+                Icons.search,
+                color: Colors.white,
+                size: 24,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-

@@ -73,7 +73,7 @@ class WelcomeScreen extends StatelessWidget {
                 // Login Link
                 TextButton(
                   onPressed: () {
-                    context.go(AppRouter.login);
+                    context.push(AppRouter.login);
                   },
                   child: const Text(
                     'Đăng Nhập',

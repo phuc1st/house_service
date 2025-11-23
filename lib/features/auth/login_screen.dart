@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
+import 'package:project/shared/routing/app_router.dart';
 import 'package:project/shared/widgets/app_primary_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -30,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                 child: IconButton(
                   icon: const Icon(Icons.close, color: Colors.black87),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    context.go(AppRouter.welcome);
                   },
                 ),
               ),
@@ -150,7 +153,7 @@ class LoginScreen extends StatelessWidget {
                     AppPrimaryButton(
                       label: 'Đăng Nhập',
                       onPressed: () {
-                        // Handle login
+                        context.go(OrderPaymentRouter.home);
                       },
                       padding: const EdgeInsets.symmetric(vertical: 16),
                     ),

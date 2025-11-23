@@ -20,3 +20,4 @@ class ScheduleOrder {
   final bool isEffectiveHour;
 }
 
+
