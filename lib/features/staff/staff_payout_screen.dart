@@ -69,7 +69,7 @@ class _StaffPayoutScreenState extends State<StaffPayoutScreen> {
             child: AppPrimaryButton(
               label: 'Xác nhận rút tiền',
               onPressed: () {
-                // Handle confirm withdrawal
+                _showSuccessDialog(context);
               },
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
@@ -312,6 +312,76 @@ class _StaffPayoutScreenState extends State<StaffPayoutScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  void _showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Success Icon
+                Container(
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF4CAF50).withOpacity(0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.check_circle,
+                    size: 50,
+                    color: Color(0xFF4CAF50),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                // Title
+                const Text(
+                  'Rút tiền thành công!',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 12),
+                // Message
+                Text(
+                  'Yêu cầu rút tiền của bạn đã được xử lý thành công. Số tiền sẽ được chuyển vào tài khoản trong vòng 1-3 ngày làm việc.',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey.shade700,
+                    height: 1.5,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24),
+                // Close Button
+                SizedBox(
+                  width: double.infinity,
+                  child: AppPrimaryButton(
+                    label: 'Đóng',
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

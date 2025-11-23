@@ -66,7 +66,7 @@ class _StaffJobDetailScreenState extends State<StaffJobDetailScreen> {
             child: AppPrimaryButton(
               label: 'Bắt đầu công việc',
               onPressed: () {
-                // Handle start job
+                _showStartJobModal(context);
               },
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
@@ -364,6 +364,101 @@ class _StaffJobDetailScreenState extends State<StaffJobDetailScreen> {
         ],
       ),
     );
+  }
+
+  void _showStartJobModal(BuildContext context) {
+    // Handle start job action first
+    _handleStartJob();
+    
+    // Then show success notification
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Success Icon
+                Container(
+                  width: 80,
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF4CAF50),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.check,
+                    size: 50,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                // Title
+                const Text(
+                  'Bắt đầu công việc thành công',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 12),
+                // Message
+                const Text(
+                  'Công việc đã được bắt đầu. Hãy hoàn thành các checklist để hoàn tất công việc.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black54,
+                    height: 1.5,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                // Button
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFB23D0A),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text(
+                      'Xác nhận',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _handleStartJob() {
+    // TODO: Implement start job logic
+    // This could include:
+    // - Update job status
+    // - Start timer
+    // - Navigate to job tracking screen
+    // - Show success message
   }
 }
 

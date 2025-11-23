@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/features/cancel_change_wallet/cancel_order/presentation/widgets/cancel_order_modal.dart';
+import 'package:project/features/cancel_change_wallet/reschedule/presentation/widgets/reschedule_calendar_modal.dart';
 
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
 import 'package:project/shared/widgets/app_gradient_background.dart';
@@ -37,7 +39,7 @@ class OrderDetailsScreen extends StatelessWidget {
               _buildPaymentSummaryCard(),
               const SizedBox(height: 16),
               // Action Buttons
-              _buildActionButtons(),
+              _buildActionButtons(context),
               const SizedBox(height: 16),
             ],
           ),
@@ -316,20 +318,20 @@ class OrderDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButtons() {
+  Widget _buildActionButtons(BuildContext context) {
     return Column(
       children: [
         AppPrimaryButton(
           label: 'Hủy đơn hàng',
           onPressed: () {
-            // Handle cancel order
+            _showCancelOrderModal(context);
           },
           padding: const EdgeInsets.symmetric(vertical: 16),
         ),
         const SizedBox(height: 12),
         OutlinedButton(
           onPressed: () {
-            // Handle reschedule
+            _showRescheduleModal(context);
           },
           style: OutlinedButton.styleFrom(
             backgroundColor: Colors.white,
@@ -376,6 +378,40 @@ class OrderDetailsScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  void _showCancelOrderModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CancelOrderModal(
+          onConfirm: (String reason, String? otherReason) {
+            // Handle cancel order with reason
+            // TODO: Implement cancel order logic
+            print('Cancel reason: $reason');
+            if (otherReason != null) {
+              print('Other reason: $otherReason');
+            }
+          },
+        );
+      },
+    );
+  }
+
+  void _showRescheduleModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return RescheduleCalendarModal(
+          initialDate: DateTime(2026, 2, 12), // Default date from the design
+          onDateSelected: (DateTime selectedDate) {
+            // Handle date selection
+            // TODO: Implement reschedule logic
+            print('Selected date: $selectedDate');
+          },
+        );
+      },
     );
   }
 }

@@ -106,3 +106,4 @@ class SearchAnimation extends StatelessWidget {
   }
 }
 
+

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:go_router/go_router.dart';
+import 'package:project/features/staff/staff_router.dart';
 import 'package:project/shared/widgets/app_gradient_background.dart';
 import 'package:project/shared/widgets/app_header.dart';
 import 'package:project/shared/widgets/staff_bottom_navigation_bar.dart';
@@ -24,7 +25,7 @@ class StaffAccountScreen extends StatelessWidget {
               _buildProfileSection(),
               const SizedBox(height: 24),
               // Account Options
-              _buildAccountOptions(),
+              _buildAccountOptions(context),
               const SizedBox(height: 16),
               // Logout Button
               _buildLogoutButton(),
@@ -87,7 +88,7 @@ class StaffAccountScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildAccountOptions() {
+  Widget _buildAccountOptions(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -103,21 +104,58 @@ class StaffAccountScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _buildOptionItem(Icons.settings, 'Cài đặt'),
+          _buildOptionItem(
+            Icons.settings,
+            'Chi tiết',
+            onTap: () {
+              context.push(StaffRouter.staffProfile);
+            },
+          ),
           const Divider(),
-          _buildOptionItem(Icons.notifications_outlined, 'Notification'),
+          _buildOptionItem(
+            Icons.notifications_outlined,
+            'Thông báo',
+            onTap: () {
+              context.push(StaffRouter.notifications);
+            },
+          ),
           const Divider(),
           _buildOptionItem(Icons.payment, 'Phương thức thanh toán'),
           const Divider(),
           _buildOptionItem(Icons.help_outline, 'Trợ giúp'),
+          const Divider(),
+          _buildOptionItem(
+            Icons.apps_outlined,
+            'Loại dịch vụ',
+            onTap: () {
+              context.push(StaffRouter.serviceTypes);
+            },
+          ),
+          const Divider(),
+          _buildOptionItem(
+            Icons.payments_outlined,
+            'Tiền thưởng',
+            onTap: () {
+              context.push(StaffRouter.rewards);
+            },
+          ),
+          const Divider(),
+          _buildOptionItem(
+            Icons.calendar_today_outlined,
+            'Lịch công việc',
+            onTap: () {
+              context.push(StaffRouter.serviceSchedule);
+            },
+          ),
+          const Divider(),
         ],
       ),
     );
   }
 
-  Widget _buildOptionItem(IconData icon, String label) {
+  Widget _buildOptionItem(IconData icon, String label, {VoidCallback? onTap}) {
     return InkWell(
-      onTap: () {
+      onTap: onTap ?? () {
         // Handle option tap
       },
       child: Padding(

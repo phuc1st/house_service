@@ -11,6 +11,7 @@ import 'package:project/features/home/home_screen.dart';
 import 'package:project/features/house_profile/house_profile_screen.dart';
 import 'package:project/features/services/cleaning_service_screen.dart';
 import 'package:project/features/loyalty/loyalty_screen.dart';
+import 'package:project/features/cancel_change_wallet/wallet/wallet_router.dart';
 import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/features/orders/order_confirmation_screen.dart';
 import 'package:project/features/orders/order_details_screen.dart';
@@ -38,6 +39,7 @@ class AppRouter {
   static const String loyalty = '/loyalty';
   static const String houseProfile = '/house-profile';
   static const String servicePackages = '/service-packages';
+  static const String wallet = '/wallet';
 
   static GoRouter get router => _router;
 
@@ -131,6 +133,8 @@ class AppRouter {
       ),
       // Order Payment routes
       ...OrderPaymentRouter.routes,
+      // Wallet routes
+      ...WalletRouter.routes,
     ],
     errorBuilder: (context, state) => Scaffold(
       body: Center(
