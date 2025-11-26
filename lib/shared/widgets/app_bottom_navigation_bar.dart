@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:project/features/order_payment/order_payment_router.dart';
 import 'package:project/shared/routing/app_router.dart';
 
+import '../routing/app_router.dart';
+
 class AppBottomNavigationBar extends StatelessWidget {
   const AppBottomNavigationBar({
     super.key,
@@ -38,7 +40,7 @@ class AppBottomNavigationBar extends StatelessWidget {
         context.go(OrderPaymentRouter.home);
         break;
       case 1: // Hoạt động
-        context.go(OrderPaymentRouter.activity);
+        context.go(AppRouter.waitActivity);
         break;
       case 2: // Tin nhắn
         context.go(AppRouter.messages);
