@@ -54,5 +54,46 @@ class AppTheme {
       ),
     );
   }
+
+  static ThemeData get dark {
+    const baseTextColor = Colors.white;
+    return ThemeData(
+      useMaterial3: false,
+      scaffoldBackgroundColor: Colors.black,
+      colorScheme: const ColorScheme(
+        brightness: Brightness.dark,
+        primary: primary,
+        onPrimary: Colors.white,
+        secondary: secondary,
+        onSecondary: Colors.white,
+        error: Colors.red,
+        onError: Colors.white,
+        background: Colors.black,
+        onBackground: baseTextColor,
+        surface: Color(0xFF121212),
+        onSurface: baseTextColor,
+      ),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Color(0xFF121212),
+        foregroundColor: baseTextColor,
+        elevation: 0,
+        centerTitle: true,
+        titleTextStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: baseTextColor,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: primary,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
