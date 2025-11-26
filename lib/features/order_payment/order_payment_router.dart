@@ -14,6 +14,8 @@ import 'profile/presentation/screens/profile_screen.dart';
 import 'search/presentation/screens/search_screen.dart';
 import 'service_detail/presentation/screens/service_detail_screen.dart';
 import 'service_waiting/presentation/screens/service_waiting_screen.dart';
+import 'orders/order_history_screen.dart';
+import 'activity/activity_screen.dart';
 
 class OrderPaymentRouter {
   // Route paths
@@ -24,12 +26,14 @@ class OrderPaymentRouter {
   static const String serviceDetail = '/service-detail';
   static const String serviceWaiting = '/service-waiting';
   static const String order = '/order';
+  static const String orderHistory = '/order-history';
   static const String orderConfirmation = '/order-confirmation';
   static const String paymentMethod = '/payment-method';
   static const String paymentSuccess = '/payment-success';
   static const String orderDetails = '/order-details';
   static const String cleaningService = '/cleaning-service';
   static const String home = '/home';
+  static const String activity = '/activity';
 
   // Get all routes for order_payment feature
   static List<RouteBase> get routes => [
@@ -72,6 +76,11 @@ class OrderPaymentRouter {
       builder: (context, state) => const OrderScreen(),
     ),
     GoRoute(
+      path: orderHistory,
+      name: 'order-history',
+      builder: (context, state) => const OrderHistoryScreen(),
+    ),
+    GoRoute(
       path: orderConfirmation,
       name: 'order-confirmation',
       builder: (context, state) => const OrderConfirmationScreen(),
@@ -100,6 +109,11 @@ class OrderPaymentRouter {
       path: home,
       name: 'home',
       builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: activity,
+      name: 'activity',
+      builder: (context, state) => const ActivityScreen(),
     ),
   ];
 }
