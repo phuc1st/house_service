@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:project/features/order_payment/order_payment_router.dart';
+import 'package:project/shared/routing/app_router.dart';
+
+import '../routing/app_router.dart';
 
 class AppBottomNavigationBar extends StatelessWidget {
   const AppBottomNavigationBar({
@@ -37,13 +40,13 @@ class AppBottomNavigationBar extends StatelessWidget {
         context.go(OrderPaymentRouter.home);
         break;
       case 1: // Hoạt động
-        // TODO: Navigate to activity page
+        context.go(AppRouter.waitActivity);
         break;
       case 2: // Tin nhắn
-        // TODO: Navigate to messages page
+        context.go(AppRouter.messages);
         break;
       case 3: // Tài khoản
-        // TODO: Navigate to account page
+        context.go(AppRouter.messageProfile);
         break;
     }
   }
