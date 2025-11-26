@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'edit_profile_screen.dart';
 import 'settings_screen.dart';
 import 'favorites_screen.dart';
+import '../report_incident/report_incident_screen.dart';
+import '../service_packages/service_packages_screen.dart';
+import '../family_tips/family_tips_screen.dart';
+import '../loyalty/loyalty_screen.dart';
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
 import 'package:project/shared/widgets/app_header.dart';
 import 'package:project/shared/widgets/app_primary_button.dart';
@@ -121,6 +125,26 @@ class ProfileScreen extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Phương thức thanh toán')));
         } else if (title == 'Dịch vụ yêu thích') {
           Navigator.push(context, MaterialPageRoute(builder: (_) => const FavoritesScreen()));
+        } else if (title == 'Báo cáo sự cố') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const ReportIncidentScreen()),
+          );
+        } else if (title == 'Gói dịch vụ') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const ServicePackagesScreen()),
+          );
+        } else if (title == 'Mẹo vặt') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const FamilyTipsScreen()),
+          );
+        } else if (title == 'Hạng thành viên') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const LoyaltyScreen()),
+          );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(title)));
         }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import '../models/activity_model.dart';
 
 // WIDGET for "Đang làm" (In Progress) activities
@@ -191,10 +193,16 @@ class InProgressActivityCard extends StatelessWidget {
                       runSpacing: 6,
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
-                        _buildStatusTag(
-                          activity.currentStatus,
-                          bgColor: activity.statusColor,
-                          textColor: activity.statusTextColor,
+                        InkWell(
+                          onTap: () {
+                            context.push(OrderPaymentRouter.activity);
+                          },
+                          borderRadius: BorderRadius.circular(16),
+                          child: _buildStatusTag(
+                            activity.currentStatus,
+                            bgColor: activity.statusColor,
+                            textColor: activity.statusTextColor,
+                          ),
                         ),
 
                         const Text(
@@ -205,15 +213,15 @@ class InProgressActivityCard extends StatelessWidget {
                           ),
                         ),
 
-                        _buildStatusTag('Đang di chuyển'),
-
-                        const Text(
-                          '→',
-                          style: TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        // _buildStatusTag('Đang di chuyển'),
+                        //
+                        // const Text(
+                        //   '→',
+                        //   style: TextStyle(
+                        //     color: Colors.black54,
+                        //     fontWeight: FontWeight.bold,
+                        //   ),
+                        // ),
 
                         _buildStatusTag('Đến nơi'),
 

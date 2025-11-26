@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:project/features/order_payment/order_payment_router.dart';
 import '../models/activity_model.dart';
 
 // WIDGET for "Hoàn thành" (Completed) activities
@@ -87,49 +89,58 @@ class CompletedActivityCard extends StatelessWidget {
       );
     }
 
-    return Card(
-      elevation: 0,
-      margin: const EdgeInsets.only(bottom: 12.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: const BorderSide(color: Colors.black12, width: 0.5),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Order Code
-            Text(
-              'Mã đơn: ${activity.orderCode}',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-                color: Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            // Status row
-            Row(
-              children: [
-                const Icon(Icons.check_circle_outline, size: 16, color: Colors.black54),
-                const SizedBox(width: 8),
-                const Text('Trạng thái',
-                    style: TextStyle(color: Colors.black54, fontSize: 14)),
-                const SizedBox(width: 16),
-                _buildStatusTag(
-                  activity.status,
-                  activity.statusColor,
-                  activity.statusTextColor,
+    return InkWell(
+      onTap: () {
+        context.push(OrderPaymentRouter.orderHistory);
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Card(
+        elevation: 0,
+        margin: const EdgeInsets.only(bottom: 12.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: const BorderSide(color: Colors.black12, width: 0.5),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Order Code
+              Text(
+                'Mã đơn: ${activity.orderCode}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                  color: Colors.black87,
                 ),
-              ],
-            ),
-            const SizedBox(height: 16),
+              ),
+              const SizedBox(height: 12),
 
-            // RATING/RATED BUTTON
-            actionButton,
-          ],
+              // Status row
+              Row(
+                children: [
+                  const Icon(Icons.check_circle_outline,
+                      size: 16, color: Colors.black54),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'Trạng thái',
+                    style: TextStyle(color: Colors.black54, fontSize: 14),
+                  ),
+                  const SizedBox(width: 16),
+                  _buildStatusTag(
+                    activity.status,
+                    activity.statusColor,
+                    activity.statusTextColor,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+
+              // RATING/RATED BUTTON
+              actionButton,
+            ],
+          ),
         ),
       ),
     );

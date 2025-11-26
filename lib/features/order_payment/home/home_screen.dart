@@ -199,14 +199,17 @@ class HomeScreen extends StatelessWidget {
               _buildCategoryCard(
                 'Tạp hóa và nấu ăn',
                 'images/home/tap-hoa.png',
+                onTap: () => context.push(OrderPaymentRouter.cleaningService),
               ),
               _buildCategoryCard(
                 'Thợ sửa chữa',
                 'images/home/sua-chua.png',
+                onTap: () => context.push(OrderPaymentRouter.cleaningService),
               ),
               _buildCategoryCard(
                 'Hệ thống nước',
                 'images/home/nuoc.png',
+                onTap: () => context.push(OrderPaymentRouter.cleaningService),
               ),
             ],
           ),
