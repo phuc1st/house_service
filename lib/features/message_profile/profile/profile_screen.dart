@@ -15,7 +15,8 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const AppHeader(
+      appBar: AppHeader(
+        onBack: () => Navigator.pop(context),
         title: 'Tài khoản',
         backgroundColor: Colors.white,
       ),

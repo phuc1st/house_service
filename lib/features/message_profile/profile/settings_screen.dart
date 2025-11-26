@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'settings_model.dart';
 import 'edit_settings_screen.dart';
-import 'package:project/shared/widgets/app_gradient_background.dart';
 import 'package:project/shared/widgets/app_header.dart';
 import 'package:project/shared/widgets/app_bottom_navigation_bar.dart';
+import 'package:project/shared/theme/theme_controller.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -27,142 +27,227 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AppGradientBackground(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: const AppHeader(
-          title: 'Cài đặt',
-          backgroundColor: Colors.transparent,
-        ),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-              _buildSectionCard(
-                title: 'Tài khoản',
-                child: ListTile(
-                  title: Text(_data.name),
-                  subtitle: Text('${_data.phone}\n${_data.email}'),
-                  isThreeLine: true,
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: _onEditAccount,
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              _buildSectionCard(
-                title: 'Thông báo',
-                child: Column(
-                  children: [
-                    CheckboxListTile(
-                      value: _data.pushEnabled,
-                      title: const Text('Push'),
-                      onChanged: (v) => setState(() => _data.pushEnabled = v ?? false),
-                    ),
-                    CheckboxListTile(
-                      value: _data.emailEnabled,
-                      title: const Text('Email'),
-                      onChanged: (v) => setState(() => _data.emailEnabled = v ?? false),
-                    ),
-                    CheckboxListTile(
-                      value: _data.smsEnabled,
-                      title: const Text('SMS'),
-                      onChanged: (v) => setState(() => _data.smsEnabled = v ?? false),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              _buildSectionCard(
-                title: 'Thanh toán',
-                child: Column(
-                  children: _data.paymentMethods
-                      .asMap()
-                      .entries
-                      .map((e) => ListTile(
-                            title: Text(e.value),
-                            trailing: TextButton(
-                              onPressed: () => setState(() => _data.paymentMethods.removeAt(e.key)),
-                              child: const Text('Xóa', style: TextStyle(color: Colors.red)),
-                            ),
-                          ))
-                      .toList(),
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              _buildSectionCard(
-                title: 'Địa chỉ',
-                child: Column(
-                  children: _data.addresses
-                      .map((a) => ListTile(
-                            title: Text(a),
-                          ))
-                      .toList(),
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              _buildSectionCard(
-                title: 'Bảo mật',
-                child: Column(
-                  children: [
-                    ListTile(
-                      title: const Text('Đổi mật khẩu'),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () => _onChangePassword(),
-                    ),
-                    ListTile(
-                      title: const Text('Quản lý 2FA'),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Quản lý 2FA'))),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              Row(
-                children: [
-                  const Icon(Icons.nights_stay, color: Colors.black54),
-                  const SizedBox(width: 8),
-                  const Expanded(child: Text('Dark Mode')),
-                  Switch(
-                    value: _data.darkMode,
-                    onChanged: (v) => setState(() => _data.darkMode = v),
-                    activeColor: Colors.orange.shade700,
-                  ),
-                ],
-              ),
-
-                const SizedBox(height: 24),
-              ],
-            ),
-          ),
-        ),
-        bottomNavigationBar: const AppBottomNavigationBar(currentIndex: 3),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: const AppHeader(
+        title: 'Cài đặt',
+        backgroundColor: Colors.white,
       ),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                child: ExpansionTile(
+                  leading: Icon(Icons.person_outline, color: Colors.orange.shade700),
+                  title: const Text('Tài khoản', style: TextStyle(fontWeight: FontWeight.w600)),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          TextFormField(
+                            initialValue: _data.name,
+                            decoration: const InputDecoration(labelText: 'Tên', border: OutlineInputBorder()),
+                            enabled: false,
+                          ),
+                          const SizedBox(height: 12),
+                          TextFormField(
+                            initialValue: _data.email,
+                            decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
+                            enabled: false,
+                          ),
+                          const SizedBox(height: 12),
+                          TextFormField(
+                            initialValue: _data.phone,
+                            decoration: const InputDecoration(labelText: 'SDT', border: OutlineInputBorder()),
+                            enabled: false,
+                          ),
+                          const SizedBox(height: 12),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              TextButton(
+                                onPressed: _onEditAccount,
+                                child: const Text('Chỉnh sửa'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                child: ExpansionTile(
+                  leading: Icon(Icons.notifications_outlined, color: Colors.orange.shade700),
+                  title: const Text('Thông báo', style: TextStyle(fontWeight: FontWeight.w600)),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: Column(
+                        children: [
+                          CheckboxListTile(
+                            value: _data.pushEnabled,
+                            onChanged: (v) => setState(() => _data.pushEnabled = v ?? false),
+                            title: const Text('Push'),
+                            controlAffinity: ListTileControlAffinity.leading,
+                          ),
+                          CheckboxListTile(
+                            value: _data.emailEnabled,
+                            onChanged: (v) => setState(() => _data.emailEnabled = v ?? false),
+                            title: const Text('Email'),
+                            controlAffinity: ListTileControlAffinity.leading,
+                          ),
+                          CheckboxListTile(
+                            value: _data.smsEnabled,
+                            onChanged: (v) => setState(() => _data.smsEnabled = v ?? false),
+                            title: const Text('SMS'),
+                            controlAffinity: ListTileControlAffinity.leading,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                child: ExpansionTile(
+                  leading: Icon(Icons.payment_outlined, color: Colors.orange.shade700),
+                  title: const Text('Thanh toán', style: TextStyle(fontWeight: FontWeight.w600)),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: Column(
+                        children: [
+                          for (var i = 0; i < _data.paymentMethods.length; i++)
+                            ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              leading: const Icon(Icons.credit_card),
+                              title: Text(_data.paymentMethods[i]),
+                              trailing: TextButton(
+                                onPressed: () => setState(() => _data.paymentMethods.removeAt(i)),
+                                child: const Text('Xóa', style: TextStyle(color: Colors.red)),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                child: ExpansionTile(
+                  leading: Icon(Icons.location_on_outlined, color: Colors.orange.shade700),
+                  title: const Text('Địa chỉ', style: TextStyle(fontWeight: FontWeight.w600)),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: Column(
+                        children: [
+                          for (var addr in _data.addresses)
+                            Container(
+                              width: double.infinity,
+                              margin: const EdgeInsets.only(bottom: 8),
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.grey.shade300)),
+                              child: Text(addr),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                child: ExpansionTile(
+                  leading: Icon(Icons.lock_outline, color: Colors.orange.shade700),
+                  title: const Text('Bảo mật', style: TextStyle(fontWeight: FontWeight.w600)),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          ElevatedButton(onPressed: _onChangePassword, child: const Text('Đổi mật khẩu')),
+                          const SizedBox(height: 8),
+                          ElevatedButton(onPressed: () => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Quản lý 2FA'))), child: const Text('Quản lý 2FA')),
+                          const SizedBox(height: 12),
+                    
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text('Dark Mode'),
+                                Switch(
+                                  value: _data.darkMode,
+                                  onChanged: (v) {
+                                    setState(() => _data.darkMode = v);
+                                    ThemeController.setDark(v);
+                                  },
+                                  activeColor: Colors.orange.shade700,
+                                ),
+                              ],
+                            ),
+                  ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: const AppBottomNavigationBar(currentIndex: 3),
     );
   }
 
-  Widget _buildSectionCard({required String title, required Widget child}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-        const SizedBox(height: 8),
-        Card(elevation: 0, child: Padding(padding: const EdgeInsets.all(12), child: child)),
-      ],
-    );
+  @override
+  void initState() {
+    super.initState();
+    _data.darkMode = ThemeController.isDark.value;
+    ThemeController.isDark.addListener(_themeListener);
   }
+
+  @override
+  void dispose() {
+    ThemeController.isDark.removeListener(_themeListener);
+    super.dispose();
+  }
+
+  void _themeListener() {
+    if (mounted) setState(() => _data.darkMode = ThemeController.isDark.value);
+  }
+
+  
 
   void _onEditAccount() async {
     final result = await Navigator.push<SettingsData>(
@@ -190,4 +275,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
+
+  
 }

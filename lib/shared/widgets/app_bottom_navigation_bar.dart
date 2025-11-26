@@ -41,7 +41,7 @@ class AppBottomNavigationBar extends StatelessWidget {
         // TODO: Navigate to activity page
         break;
       case 2: // Tin nhắn
-        // TODO: Navigate to messages page
+        context.go(AppRouter.messages);
         break;
       case 3: // Tài khoản
         context.go(AppRouter.messageProfile);

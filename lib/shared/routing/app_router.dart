@@ -14,6 +14,7 @@ import '../../features/message_profile/loyalty/loyalty_screen.dart';
 import '../../features/message_profile/report_incident/report_incident_screen.dart';
 import '../../features/message_profile/service_packages/service_packages_screen.dart';
 import '../../features/message_profile/profile/profile_screen.dart';
+import '../../features/message_profile/messages/messages_list_screen.dart';
 import '../../features/order_payment/home/home_screen.dart';
 import '../../features/order_payment/services_clean/cleaning_service_screen.dart';
 
@@ -29,6 +30,7 @@ class AppRouter {
   static const String loyalty = '/loyalty';
   static const String houseProfile = '/house-profile';
   static const String messageProfile = '/message-profile';
+  static const String messages = '/messages';
   static const String servicePackages = '/service-packages';
 
   static GoRouter get router => _router;
@@ -85,6 +87,11 @@ class AppRouter {
         path: messageProfile,
         name: 'message-profile',
         builder: (context, state) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: messages,
+        name: 'messages',
+        builder: (context, state) => const MessagesListScreen(),
       ),
       GoRoute(
         path: servicePackages,
