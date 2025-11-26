@@ -38,7 +38,7 @@ class AppBottomNavigationBar extends StatelessWidget {
         context.go(OrderPaymentRouter.home);
         break;
       case 1: // Hoạt động
-        // TODO: Navigate to activity page
+        context.go(OrderPaymentRouter.activity);
         break;
       case 2: // Tin nhắn
         context.go(AppRouter.messages);
